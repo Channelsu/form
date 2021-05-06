@@ -14,6 +14,8 @@ class _FormScreenState extends State<FormScreen> {
   String _phoneNumber;
   String _calories;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
