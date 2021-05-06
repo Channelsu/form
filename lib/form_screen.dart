@@ -6,6 +6,14 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+
+  String _name;
+  String _email;
+  String _password;
+  String _url;
+  String _phoneNumber;
+  String _calories;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
