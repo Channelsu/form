@@ -17,7 +17,7 @@ class _FormScreenState extends State<FormScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildName() {
-    return null;
+    return TextField();
   }
 
   Widget _buildEmail() {
@@ -48,6 +48,20 @@ class _FormScreenState extends State<FormScreen> {
       ),
       body: Container(
         margin: EdgeInsets.all(24),
+        child: Form(
+          child: Column(
+            // 縦を基準として中央に配置
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildName(),
+              _buildEmail(),
+              _buildPassword(),
+              _buildURL(),
+              _buildPhoneNumber(),
+              _buildCalories(),
+            ],
+          ),
+        ),
       ),
     );
   }
