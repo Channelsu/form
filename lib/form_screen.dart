@@ -59,6 +59,7 @@ class _FormScreenState extends State<FormScreen> {
       body: Container(
         margin: EdgeInsets.all(24),
         child: Form(
+          key: _formKey,
           child: Column(
             // 縦を基準として中央に配置
             mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +73,12 @@ class _FormScreenState extends State<FormScreen> {
               SizedBox(height: 100,),
               RaisedButton(
                 child: Text('登録', style: TextStyle(color: Colors.blue, fontSize: 16),),
-                onPressed: null,
+                onPressed: () {
+                  if(!_formKey.currentState.validate()) {
+                    return;
+                  }
+                  _formKey.currentState.save();
+                },
               )
             ],
           ),
