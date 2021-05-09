@@ -17,7 +17,17 @@ class _FormScreenState extends State<FormScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildName() {
-    return TextField();
+    return TextFormField(
+      decoration: InputDecoration(labelText: '氏名',),
+      validator: (String value) {
+        if(value.isEmpty) {
+          return '必須入力です';
+        }
+      },
+      onSaved: (String value) {
+        _name = value;
+      },
+    );
   }
 
   Widget _buildEmail() {
@@ -54,11 +64,16 @@ class _FormScreenState extends State<FormScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _buildName(),
-              _buildEmail(),
-              _buildPassword(),
-              _buildURL(),
-              _buildPhoneNumber(),
-              _buildCalories(),
+              // _buildEmail(),
+              // _buildPassword(),
+              // _buildURL(),
+              // _buildPhoneNumber(),
+              // _buildCalories(),
+              SizedBox(height: 100,),
+              RaisedButton(
+                child: Text('登録', style: TextStyle(color: Colors.blue, fontSize: 16),),
+                onPressed: null,
+              )
             ],
           ),
         ),
