@@ -31,7 +31,23 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   Widget _buildEmail() {
-    return null;
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'メール',),
+      validator: (String value) {
+        if(value.isEmpty) {
+          return '必須入力です';
+        }
+        if(!RegExp(
+          r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+          .hasMatch(value)) {
+          return '正しくメールアドレスを入力して下さい';
+        }
+        return null;
+      },
+      onSaved: (String value) {
+        _email = value;
+      },
+    );
   }
 
   Widget _buildPassword() {
@@ -65,7 +81,7 @@ class _FormScreenState extends State<FormScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _buildName(),
-              // _buildEmail(),
+              _buildEmail(),
               // _buildPassword(),
               // _buildURL(),
               // _buildPhoneNumber(),
