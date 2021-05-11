@@ -51,7 +51,18 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   Widget _buildPassword() {
-    return null;
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'パスワード',),
+      keyboardType: TextInputType.visiblePassword,
+      validator: (String value) {
+        if(value.isEmpty) {
+          return '必須入力です';
+        }
+      },
+      onSaved: (String value) {
+        _password = value;
+      },
+    );
   }
 
   Widget _buildURL() {
@@ -82,7 +93,7 @@ class _FormScreenState extends State<FormScreen> {
             children: <Widget>[
               _buildName(),
               _buildEmail(),
-              // _buildPassword(),
+              _buildPassword(),
               // _buildURL(),
               // _buildPhoneNumber(),
               // _buildCalories(),
