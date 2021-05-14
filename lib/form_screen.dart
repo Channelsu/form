@@ -81,7 +81,18 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   Widget _buildPhoneNumber() {
-    return null;
+    return TextFormField(
+      decoration: InputDecoration(labelText: '電話番号'),
+      keyboardType: TextInputType.phone,
+      validator: (value) {
+        if(value.isEmpty) {
+          return '必須入力です';
+        }
+      },
+      onSaved: (String value) {
+        _url = value;
+      },
+    );
   }
 
   Widget _buildCalories() {
@@ -106,7 +117,7 @@ class _FormScreenState extends State<FormScreen> {
               _buildEmail(),
               _buildPassword(),
               _buildURL(),
-              // _buildPhoneNumber(),
+              _buildPhoneNumber(),
               // _buildCalories(),
               SizedBox(height: 100,),
               RaisedButton(
