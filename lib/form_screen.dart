@@ -84,7 +84,7 @@ class _FormScreenState extends State<FormScreen> {
     return TextFormField(
       decoration: InputDecoration(labelText: '電話番号'),
       keyboardType: TextInputType.phone,
-      validator: (value) {
+      validator: (String value) {
         if(value.isEmpty) {
           return '必須入力です';
         }
@@ -96,7 +96,21 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   Widget _buildCalories() {
-    return null;
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Calories'),
+      keyboardType: TextInputType.number,
+      validator: (String value) {
+
+        int calories = int.tryParse(value);
+
+        if(calories == null || calories <= 0) {
+          return '0以上の数字を入力して下さい';
+        }
+      },
+      onSaved: (String value) {
+        _calories = value;
+      },
+    );
   }
 
   @override
@@ -118,7 +132,7 @@ class _FormScreenState extends State<FormScreen> {
               _buildPassword(),
               _buildURL(),
               _buildPhoneNumber(),
-              // _buildCalories(),
+              _buildCalories(),
               SizedBox(height: 100,),
               RaisedButton(
                 child: Text('登録', style: TextStyle(color: Colors.blue, fontSize: 16),),
