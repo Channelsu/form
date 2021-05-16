@@ -19,10 +19,12 @@ class _FormScreenState extends State<FormScreen> {
   Widget _buildName() {
     return TextFormField(
       decoration: InputDecoration(labelText: '氏名',),
+      maxLength: 10,
       validator: (String value) {
         if(value.isEmpty) {
           return '必須入力です';
         }
+        return null;
       },
       onSaved: (String value) {
         _name = value;
@@ -58,6 +60,7 @@ class _FormScreenState extends State<FormScreen> {
         if(value.isEmpty) {
           return '必須入力です';
         }
+        return null;
       },
       onSaved: (String value) {
         _password = value;
@@ -73,6 +76,7 @@ class _FormScreenState extends State<FormScreen> {
         if(value.isEmpty) {
           return '必須入力です';
         }
+        return null;
       },
       onSaved: (String value) {
         _url = value;
@@ -88,6 +92,7 @@ class _FormScreenState extends State<FormScreen> {
         if(value.isEmpty) {
           return '必須入力です';
         }
+        return null;
       },
       onSaved: (String value) {
         _url = value;
@@ -106,6 +111,7 @@ class _FormScreenState extends State<FormScreen> {
         if(calories == null || calories <= 0) {
           return '0以上の数字を入力して下さい';
         }
+        return null;
       },
       onSaved: (String value) {
         _calories = value;
@@ -134,15 +140,26 @@ class _FormScreenState extends State<FormScreen> {
               _buildPhoneNumber(),
               _buildCalories(),
               SizedBox(height: 100,),
-              RaisedButton(
-                child: Text('登録', style: TextStyle(color: Colors.blue, fontSize: 16),),
-                onPressed: () {
-                  if(!_formKey.currentState.validate()) {
-                    return;
-                  }
-                  _formKey.currentState.save();
-                },
-              )
+              SizedBox(
+                // ボタンの大きさを変えるにはSizedBoxで囲んでwidth/heightをつける
+                width: 100,
+                height: 50,
+                child: ElevatedButton(
+                  child: Text('登録', style: TextStyle(fontSize: 20),),
+                  onPressed: () {
+                    if(!_formKey.currentState.validate()) {
+                      return;
+                    }
+                    _formKey.currentState.save();
+                    print(_name);
+                    print(_email);
+                    print(_phoneNumber);
+                    print(_url);
+                    print(_password);
+                    print(_calories);
+                  },
+                ),
+              ),
             ],
           ),
         ),
